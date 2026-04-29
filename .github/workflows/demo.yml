@@ -25,9 +25,17 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: my-dist-files
+          path: |
+            dist
+            packeage.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
         run: echo "Deploying..."
+
